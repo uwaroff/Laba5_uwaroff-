@@ -1,0 +1,40 @@
+import requests
+import json
+
+
+sslk2 = ('http://api.openweathermap.org/data/2.5/weather?'
+         'lat=51.84&'
+         'lon=55.14&'
+         'appid=7cdcfaa69a322e2c77fdf3043de45290&'
+         'units=metric&'
+         'lang=ru')
+res = requests.get(sslk2)
+data = res.json()
+
+print("погода в Оренбурге:", data['weather'][0]['description'])
+print("температура:", data['main']['temp'], "по Цельсию")
+print("давление:", data['main']['pressure'], "гекто-паскаль")
+print("влажность:", data['main']['humidity'], "%")
+
+
+sslk1 = ('https://open-notify.org/v2/everything?'
+         'q=bbc-news&'
+         'from=2022-11-21&'
+         'sortBy=popularity&'
+         'apiKey=694c15265e8c435fbc7d9e827ca5e917')
+
+r_1 = requests.get(sslk1)
+r_1 = r_1.json()
+
+with open('requests_1.json', 'w') as file_1:
+    json.dump(r_1, file_1, indent=3)
+
+
+sslk3 = ('https://api.openbrewerydb.org/breweries/random')
+
+r_3 = requests.get(sslk3)
+r_3 = r_3.json()
+
+
+with open('requests_2.json', 'w') as file_2:
+    json.dump(r_3, file_2, indent=3)
